@@ -15,14 +15,13 @@ class artistaController extends Controller
      */
     
     public function index(){
-    
+        
         try{
             $artistas = ArtistaModel::all();
-            return response()->json($artistas,200);
+            return response()->view('artistas', compact('artistas'));
         }catch(\Throwable $th){
-            return response()->json('Error al obtener los artistas',500);
+            return $th;
         }
-
         
     }
 

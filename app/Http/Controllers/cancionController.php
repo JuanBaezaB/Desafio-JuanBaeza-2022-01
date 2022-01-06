@@ -83,7 +83,7 @@ class cancionController extends Controller
             $cancion->titulo=$request->titulo;
             $cancion->duracion=$request->duracion; 
             $cancion->lyrics=$request->lyrics; 
-            $cancion->audio=$request->audio; 
+            $cancion->audio=$request->audio;
             $cancion->album_id=$request->album_id;
             $cancion->save();
         } catch (\Throwable $th) {
