@@ -12,6 +12,7 @@ class CancionModel extends Model{
         'titulo',
         'duracion',
         'lyrics',
+        'audio',
         'album_id'
     ];
 }

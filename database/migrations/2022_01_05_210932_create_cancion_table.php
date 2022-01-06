@@ -16,8 +16,9 @@ class CreateCancionTable extends Migration
         Schema::create('cancion', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('titulo');
-            $table->integer('duracion');
+            $table->string('duracion');
             $table->string('lyrics');
+            $table->longtext('audio');
             $table->unsignedTinyInteger('album_id');
             $table->foreign('album_id')->references('id')->on('album')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
