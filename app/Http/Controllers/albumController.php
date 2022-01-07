@@ -15,7 +15,7 @@ class albumController extends Controller
     public function index(){
         try{
             $albumes = AlbumModel::all();
-            return response()->view('albumes', compact('albumes'));
+            return response()->view('Album.albumes', compact('albumes'));
             //return response()->json($albumes,200);
         }catch(\Throwable $th){
             return $th;

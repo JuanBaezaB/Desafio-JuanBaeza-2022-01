@@ -18,7 +18,7 @@ class artistaController extends Controller
         
         try{
             $artistas = ArtistaModel::all();
-            return response()->view('artistas', compact('artistas'));
+            return response()->view('Artista.artistas', compact('artistas'));
         }catch(\Throwable $th){
             return $th;
         }
@@ -78,7 +78,7 @@ class artistaController extends Controller
     public function edit($id){
         try{
             $artista = ArtistaModel::findOrFail($id);
-            return response()->view('artistaedit', compact('artista'));
+            return response()->view('Artista.artistaedit', compact('artista'));
         }catch(\Throwable $th){
             return $th;
         }
@@ -116,8 +116,8 @@ class artistaController extends Controller
     public function destroy($id) {
         try {
             ArtistaModel::destroy($id);
-            $artistas = ArtistaModel::all();
-            return response()->view('artistas', compact('artistas'));
+            //$artistas = ArtistaModel::all();
+            //return response()->view('artistas', compact('artistas'));
         } catch (\Throwable $th) {
             throw $th;
         }
