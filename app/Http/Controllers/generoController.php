@@ -15,7 +15,7 @@ class generoController extends Controller
     public function index(){
         try{
             $generos = GeneroModel::all();
-            return response()->json($generos,200);
+            return response()->view('Genero.generos', compact('generos'));
         }catch(\Throwable $th){
             return response()->json('Error al obtener los generos',500);
         }
@@ -37,10 +37,13 @@ class generoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+        $datos = request()->except('_token');
+
         try{
-            GeneroModel::create($request->all());
+            GeneroModel::create($datos);
+            return back()->with('mensaje', 'Nota agregada');
         }catch(\Throwable $th){
-            return $th;
+            return back()->with('mensaje', 'Nota agregada');
         }
     }
 
