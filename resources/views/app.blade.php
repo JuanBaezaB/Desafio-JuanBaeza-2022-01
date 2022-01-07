@@ -72,7 +72,7 @@
                     <a class="nav-link fw-bolder" href="#">CANCION</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bolder" href="#">GENERO</a>
+                    <a class="nav-link fw-bolder" href="{{url('/genero')}}">GENERO</a>
                 </li>
     
                 
