@@ -69,5 +69,13 @@
             </div>
         </div>
     </div>
+    <style>
+        td {
+            max-width: 240px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            }
+    </style>
 
 @endsection
