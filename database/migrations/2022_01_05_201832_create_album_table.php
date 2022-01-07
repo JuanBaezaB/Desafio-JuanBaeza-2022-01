@@ -16,7 +16,7 @@ class CreateAlbumTable extends Migration
         Schema::create('album', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('titulo');
-            $table->integer('ano_lanzamiento');
+            $table->date('fecha_lanzamiento');
             $table->string('duracion');
             $table->longtext('imagen');
             $table->unsignedTinyInteger('artista_id');

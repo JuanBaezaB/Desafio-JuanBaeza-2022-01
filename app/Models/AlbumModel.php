@@ -10,7 +10,7 @@ class AlbumModel extends Model {
     protected $table = 'album';
     protected $fillable = [
         'titulo',
-        'ano_lanzamiento', 
+        'fecha_lanzamiento', 
         'duracion',
         'imagen',
         'artista_id'

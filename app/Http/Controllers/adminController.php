@@ -1,28 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\ArtistaModel;
+use App\Models\AdminModel;
 
 use Illuminate\Http\Request;
 
-
-class artistaController extends Controller
+class adminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function index(){
-        
         try{
-            $artistas = ArtistaModel::all();
-            return response()->view('artistas', compact('artistas'));
+            $admins = AdminModel::all();
+            return response()->json($admins,200);
         }catch(\Throwable $th){
-            return $th;
+            return response()->json('Error al obtener el admin',500);
         }
-        
     }
 
     /**
@@ -40,14 +36,9 @@ class artistaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
     public function store(Request $request){
-        $datos = request()->except('_token');
-        
         try{
-            ArtistaModel::create($datos);
-            return back()->with('mensaje', 'Nota agregada');
+            AdminModel::create($request->all());
         }catch(\Throwable $th){
             return $th;
         }
@@ -61,11 +52,10 @@ class artistaController extends Controller
      */
     public function show($id){
         try{
-            $artista = ArtistaModel::find($id);
-
-            return response()->json($artista,200);
+            $admin = AdminModel::find($id);
+            return response()->json($admin,200);
         }catch(\Throwable $th){
-            return response()->json('Error al obtener el artista',500);
+            return response()->json('Error al obtener el admin',500);
         }
     }
 
@@ -75,13 +65,9 @@ class artistaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id){
-        try{
-            $artista = ArtistaModel::findOrFail($id);
-            return response()->view('artistaedit', compact('artista'));
-        }catch(\Throwable $th){
-            return $th;
-        }
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -92,15 +78,12 @@ class artistaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        //$datos = request()->except('_token','_method');
-        //return response()->json($datos,200);
         try {
-            $artista = ArtistaModel::find($id);
-            $artista->nombre=$request->nombre;
-            $artista->imagen=$request->imagen; 
-            $artista->descripcion=$request->descripcion; 
-            $artista->save();
-            return back();
+            $album = AdminModel::find($id);
+            $album->nombre=$request->nombre;
+            $album->contraseña=$request->contraseña; 
+            $album->correo=$request->correo; 
+            $album->save();
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -112,15 +95,11 @@ class artistaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy($id) {
+    public function destroy($id){
         try {
-            ArtistaModel::destroy($id);
-            $artistas = ArtistaModel::all();
-            return response()->view('artistas', compact('artistas'));
+            AdminModel::destroy($id);
         } catch (\Throwable $th) {
             throw $th;
         }
-        
     }
 }

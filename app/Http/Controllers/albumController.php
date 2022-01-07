@@ -15,9 +15,10 @@ class albumController extends Controller
     public function index(){
         try{
             $albumes = AlbumModel::all();
-            return response()->json($albumes,200);
+            return response()->view('albumes', compact('albumes'));
+            //return response()->json($albumes,200);
         }catch(\Throwable $th){
-            return response()->json('Error al obtener los albumes',500);
+            return $th;
         }
     }
 
@@ -83,7 +84,7 @@ class albumController extends Controller
         try {
             $album = AlbumModel::find($id);
             $album->titulo=$request->titulo;
-            $album->ano_lanzamiento=$request->ano_lanzamiento; 
+            $album->fecha_lanzamiento=$request->fecha_lanzamiento; 
             $album->duracion=$request->duracion; 
             $album->imagen=$request->imagen;
             $album->artista_id=$request->artista_id;
@@ -102,6 +103,7 @@ class albumController extends Controller
     public function destroy($id){
         try {
             AlbumModel::destroy($id);
+            return redirect('album');
         } catch (\Throwable $th) {
             throw $th;
         }

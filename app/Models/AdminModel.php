@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GeneroCancionModel extends Model{
+class AdminModel extends Model{
     use HasFactory;
-    protected $table = 'genero_cancion';
+    protected $table = 'album';
     protected $fillable = [
-        'cancion_id',
-        'genero_id',
+        'nombre',
+        'contraseña', 
+        'correo',
     ];
 }
