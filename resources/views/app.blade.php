@@ -9,6 +9,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- /navbar -->
 
+    @yield('css')
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
@@ -92,6 +94,7 @@
     </nav>
     
     @yield('body')
+    @yield('js')
 </body>
 
 </html>

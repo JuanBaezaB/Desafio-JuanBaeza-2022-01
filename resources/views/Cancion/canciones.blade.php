@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Duración:</label>
-                            <input type="text" class="form-control shadow-sm" name="duracion" maxlength="100" placeholder="Rock" required>
+                            <input type="text" class="form-control shadow-sm" name="duracion" maxlength="100" placeholder="hh:mm:ss" required>
                         </div>
                         <div class="mt-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Letra:</label>

@@ -44,6 +44,9 @@ class albumController extends Controller
     public function store(Request $request){
         try{
             $datos = request()->except('_token');
+            if($request->hasFile('imagen')){
+                $datos['imagen'] = base64_encode(file_get_contents($request->file('imagen')));
+            }
             AlbumModel::create($datos);
             return back()->with('mensaje', 'Nota agregada');
         }catch(\Throwable $th){
@@ -74,7 +77,13 @@ class albumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        //
+        try{
+            $artistas = ArtistaModel::all();
+            $album = AlbumModel::findOrFail($id);
+            return response()->view('Album.albumedit', compact('album','artistas'));
+        }catch(\Throwable $th){
+            return $th;
+        }
     }
 
     /**
@@ -89,10 +98,13 @@ class albumController extends Controller
             $album = AlbumModel::find($id);
             $album->titulo=$request->titulo;
             $album->fecha_lanzamiento=$request->fecha_lanzamiento; 
-            $album->duracion=$request->duracion; 
-            $album->imagen=$request->imagen;
+            $album->duracion=$request->duracion;
+            if($request->hasFile('imagen')){
+                $album['imagen'] = base64_encode(file_get_contents($request->file('imagen')));
+            }
             $album->artista_id=$request->artista_id;
             $album->save();
+            return back();
         } catch (\Throwable $th) {
             throw $th;
         }

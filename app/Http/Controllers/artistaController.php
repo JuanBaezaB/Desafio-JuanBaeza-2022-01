@@ -99,7 +99,9 @@ class artistaController extends Controller
         try {
             $artista = ArtistaModel::find($id);
             $artista->nombre=$request->nombre;
-            $artista->imagen=$request->imagen; 
+            if($request->hasFile('imagen')){
+                $artista['imagen'] = base64_encode(file_get_contents($request->file('imagen')));
+            }
             $artista->descripcion=$request->descripcion; 
             $artista->save();
             return back();
