@@ -2,7 +2,6 @@
 
 
 @section('css')
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
 @endsection
@@ -50,7 +49,7 @@
             </div>
             <div class="col-12 mb-5">
                 <div class="table-responsive  ">
-                    <table id="myTable" class="table  table-hover" style="width:100%">
+                    <table id="myTable" class="table table-bordered table-striped table-hover" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 200px;">Nombre</th>
@@ -99,10 +98,16 @@
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script>
+        
         $(document).ready(function() {
-            $('#myTable').DataTable();
+            $('#myTable').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
+                }
+            });
         });
     </script>
+
 @endsection
 
 

@@ -5,8 +5,11 @@ use App\Models\CancionModel;
 use App\Models\AlbumModel;
 use App\Models\GeneroModel;
 use App\Models\ArtistaModel;
+use App\Models\GeneroCancionModel;
+use App\Models\CancionArtistaModel;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class cancionController extends Controller
 {
@@ -45,7 +48,35 @@ class cancionController extends Controller
      */
     public function store(Request $request){
         try{
-            CancionModel::create($request->all());
+            $generos = $request->genero_id;
+            $artistas = $request->artista_id;
+            $datos = request()->except('genero_id','artista_id','_token');
+            CancionModel::create($datos);
+            $cancion_id = DB::table('cancion')->orderBy('created_at', 'desc')->first();
+
+            //return response()->json($cancion_id->id,200);
+
+
+            foreach ($generos as $genero) {
+                GeneroCancionModel::create([
+                    'cancion_id'=>$cancion_id->id,
+                    'genero_id'=>$genero
+                ]);
+            }
+
+            foreach ($artistas as $artista) {
+                
+                CancionArtistaModel::create([
+                    'cancion_id'=>$cancion_id->id,
+                    'artista_id'=>$artista
+                ]);
+            }
+            
+            
+
+            
+
+            return back()->with('mensaje', 'Nota agregada');
         }catch(\Throwable $th){
             return $th;
         }

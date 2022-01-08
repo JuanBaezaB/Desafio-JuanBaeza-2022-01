@@ -1,6 +1,11 @@
 
 @extends('app')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+@endsection
+
 @section('body')
     <div class="container">
 
@@ -29,7 +34,7 @@
             </div>
             <div class="col-lg-6 col-sm-12">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table  id="myTable" class="table table-bordered table-striped table-hover" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
@@ -55,4 +60,32 @@
             </div>
         </div>
     </div>
+    <style>
+        th {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    
+    </style>
+
+@endsection
+
+
+@section('js')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
+            }
+        });
+    });
+</script>
+
 @endsection
