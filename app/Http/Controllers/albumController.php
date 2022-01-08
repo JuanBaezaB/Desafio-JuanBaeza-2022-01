@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\AlbumModel;
+use App\Models\ArtistaModel;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class albumController extends Controller
     public function index(){
         try{
             $albumes = AlbumModel::all();
-            return response()->view('Album.albumes', compact('albumes'));
+            $artistas = ArtistaModel::all();
+            return response()->view('Album.albumes', compact('albumes','artistas'));
             //return response()->json($albumes,200);
         }catch(\Throwable $th){
             return $th;
@@ -41,7 +43,9 @@ class albumController extends Controller
     // Crear Album
     public function store(Request $request){
         try{
-            AlbumModel::create($request->all());
+            $datos = request()->except('_token');
+            AlbumModel::create($datos);
+            return back()->with('mensaje', 'Nota agregada');
         }catch(\Throwable $th){
             return $th;
         }

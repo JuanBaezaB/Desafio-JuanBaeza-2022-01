@@ -17,11 +17,11 @@
                             <label class="form-label fw-bolder">Nombre:</label>
                             <input type="text" class="form-control shadow-sm" name="nombre" maxlength="100" placeholder="Marcianeke" required>
                         </div>
-                        <div class="mb-3 col-sm-12 col-md-6">
+                        <div class=" col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Imágen:</label>
                             <input type="file" accept="image/png, .jpeg, .jpg .svg .jpg" class="form-control shadow-sm" name="imagen" required>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="mt-3 col-lg-12">
                             <label class="form-label fw-bolder">Biografía:</label>
                             <textarea name="descripcion" class="form-control shadow-sm" cols="30" rows="2" maxlength="200" placeholder="" required></textarea>
                         </div>
@@ -44,7 +44,7 @@
                             <tr>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Biografia</th>
-                                <th scope="col">Opciones</th>
+                                <th style="width: 80px;" scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,8 +52,8 @@
                                 <tr>
                                     <th scope="col"> {{ $artista['nombre'] }}</th>
                                     <th scope="col"> {{ $artista['descripcion'] }}</th>
-                                    <th>
-                                        <a onclick="eliminar({{ $artista['id'] }})" href=""> <span class="material-icons" style="color: red;">delete</span></a>
+                                    <th class="text-center">
+                                        <a onclick="eliminar({{ $artista['id'] }})" href="" > <span class="material-icons" style="color: red;">delete</span></a>
                                         
                                         <a href="{{ url('/artista/'.$artista->id.'/edit')}}" ><span  class="material-icons text-secondary">edit</span></a>
                                     </th>
@@ -70,11 +70,12 @@
         </div>
     </div>
     <style>
-        td {
-            max-width: 240px;
+        th {
+            max-width: 200px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            
             }
     </style>
 

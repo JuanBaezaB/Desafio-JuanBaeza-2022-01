@@ -3,7 +3,6 @@
 
 @section('body')
     <div class="container">
-
         <div class="row">
             <div class="col-12 pb-5 pt-3 mb-4">
                 <div class="mb-3 text-center">
@@ -16,30 +15,33 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Nombre:</label>
-                            <input type="text" class="form-control shadow-sm" name="nombre" maxlength="100" placeholder="Marcianeke" required>
+                            <input type="text" class="form-control shadow-sm" name="titulo" maxlength="100" placeholder="Marcianeke" required>
                         </div>
-
                         <div class="mb-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Fecha de lanzamiento:</label>
-                            <input type="date" class="form-control shadow-sm" name="insert_fecha_noticia" required>
+                            <input type="date" class="form-control shadow-sm" name="fecha_lanzamiento" required>
                         </div>
                         <div class="mb-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Duración:</label>
-                            <input type="text" class="form-control shadow-sm" name="nombre" maxlength="100" placeholder="Marcianeke" required>
+                            <input type="text" class="form-control shadow-sm" name="duracion" maxlength="100" placeholder="Marcianeke" required>
                         </div>
                         <div class="mb-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Imágen:</label>
                             <input type="file" accept="image/png, .jpeg, .jpg .svg .jpg" class="form-control shadow-sm" name="imagen" required>
                         </div>
                         <div class="mb-3 col-sm-12 col-md-6">
-                            <label class="form-label fw-bolder">Artista:</label>
-                            <select  class="form-select shadow-sm" name="artista" id="">
-                                <option hidden selected value="" required>Seleccione el artista</option>
+                            <label class="form-label fw-bolder ">Artista:</label>
+                            <select  class="form-select form-control shadow-sm" name="artista_id" required>
+                                <option value="" disabled selected>Seleccione el artista</option>
+                                @foreach ($artistas as $artista)
+                                    <option value="{{ $artista['id'] }}" required>{{ $artista['nombre'] }}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <div class="row w-25 mx-auto mt-4">
+                        <div class="col-lg-12 text-center mt-4">
                             <button class="btn btn-secondary shadow-sm" type="submit">Guardar</button>
                         </div>
+
                     </div>
                 </form>
 

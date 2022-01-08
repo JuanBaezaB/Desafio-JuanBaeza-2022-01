@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
     <!-- navbar -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -40,6 +41,7 @@
 </head>
 
 <body>
+
     <style>
         a:hover {
         color:rgb(194, 190, 190) !important;
@@ -69,7 +71,7 @@
                     <a class="nav-link fw-bolder" href="{{url('/album')}}">ALBUM</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bolder" href="#">CANCION</a>
+                    <a class="nav-link fw-bolder" href="{{url('/cancion')}}">CANCION</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fw-bolder" href="{{url('/genero')}}">GENERO</a>
@@ -87,8 +89,8 @@
             
         </div>
         
-        
     </nav>
+    
     @yield('body')
 </body>
 

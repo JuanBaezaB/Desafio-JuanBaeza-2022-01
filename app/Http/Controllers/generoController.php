@@ -99,6 +99,7 @@ class generoController extends Controller
     public function destroy($id){
         try {
             GeneroModel::destroy($id);
+            return redirect('genero');
         } catch (\Throwable $th) {
             throw $th;
         }

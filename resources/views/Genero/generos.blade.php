@@ -33,15 +33,19 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Opciones</th>
+                                <th style="width: 80px;" scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($generos as $genero)
                                 <tr>
                                     <th scope="col"> {{$genero['nombre']}}</th>
-                                    <th>
-
+                                    <th class="text-center">
+                                        <form action="{{url('/genero/'.$genero->id)}}" method="POST">
+                                            @csrf
+                                            {{@method_field('DELETE')}}
+                                            <button type="submit" class="btn p-0" onclick="return confirm('¿Desea borrarlo realmete?')"><span class="material-icons" style="color: red;">delete</span></button>
+                                        </form>
                                     </th>
                                 </tr>
                             @endforeach

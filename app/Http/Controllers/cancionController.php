@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\CancionModel;
+use App\Models\AlbumModel;
+use App\Models\GeneroModel;
+use App\Models\ArtistaModel;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +18,11 @@ class cancionController extends Controller
     public function index(){
         try{
             $canciones = CancionModel::all();
-            return response()->json($canciones,200);
+            $albumes = AlbumModel::all();
+            $generos = GeneroModel::all();
+            $artistas = ArtistaModel::all();
+            return response()->view('Cancion.canciones', compact('canciones','albumes','generos','artistas'));
+            //return response()->json($canciones,200);
         }catch(\Throwable $th){
             return response()->json('Error al obtener las canciones',500);
         }
@@ -100,6 +107,7 @@ class cancionController extends Controller
     public function destroy($id){
         try {
             CancionModel::destroy($id);
+            return redirect('cancion');
         } catch (\Throwable $th) {
             throw $th;
         }

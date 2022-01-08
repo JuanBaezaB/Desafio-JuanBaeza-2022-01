@@ -43,9 +43,8 @@ class artistaController extends Controller
 
 
     public function store(Request $request){
-        $datos = request()->except('_token');
-        
         try{
+            $datos = request()->except('_token');
             ArtistaModel::create($datos);
             return back()->with('mensaje', 'Nota agregada');
         }catch(\Throwable $th){
