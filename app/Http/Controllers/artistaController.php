@@ -45,6 +45,9 @@ class artistaController extends Controller
     public function store(Request $request){
         try{
             $datos = request()->except('_token');
+            if($request->hasFile('imagen')){
+                $datos['imagen'] = base64_encode(file_get_contents($request->file('imagen')));
+            }
             ArtistaModel::create($datos);
             return back()->with('mensaje', 'Nota agregada');
         }catch(\Throwable $th){
