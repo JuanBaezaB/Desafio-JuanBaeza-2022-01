@@ -52,7 +52,7 @@
                     <table id="myTable" class="table table-bordered table-striped table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th scope="col" style="width: 200px;">Nombre</th>
+                                <th scope="col" style="width: 100px;">Nombre</th>
                                 <th scope="col">Biografia</th>
                                 <th scope="col" class="text-center" style="width: 150px;">Imagen</th>
                                 <th scope="col" style="width: 80px;">Opciones</th>
