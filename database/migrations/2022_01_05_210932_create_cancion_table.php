@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\DB;
 class CreateCancionTable extends Migration
 {
     /**
@@ -18,11 +18,12 @@ class CreateCancionTable extends Migration
             $table->string('titulo');
             $table->string('duracion');
             $table->string('lyrics');
-            $table->longtext('audio');
+            ///$table->binary('audio');
             $table->unsignedTinyInteger('album_id');
             $table->foreign('album_id')->references('id')->on('album')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+        DB::statement("ALTER TABLE cancion ADD audio LONGBLOB");
     }
 
     /**

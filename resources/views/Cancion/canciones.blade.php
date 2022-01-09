@@ -35,7 +35,7 @@
                         </div>
                         <div class=" mt-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Audio:</label>
-                            <input type="text" class="form-control shadow-sm" name="audio" maxlength="100" placeholder="Rock" required>
+                            <input type="file" class="form-control shadow-sm" name="audio" accept=".mp3,audio/*"  required>
                         </div>
                         <div class="mt-3 col-sm-12 col-md-6">
 
@@ -81,10 +81,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">Título</th>
-                                <th scope="col">Duración</th>
+                                <th style="width: 100px;" scope="col">Duración</th>
                                 <th scope="col">Letra</th>
                                 <th scope="col">Audio</th>
-                                <th scope="col">Album</th>
+                                <th style="width: 80px;" scope="col">Album</th>
                                 <th style="width: 80px;" scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -94,7 +94,7 @@
                                     <th scope="col"> {{$cancion['titulo']}}</th>
                                     <th scope="col"> {{$cancion['duracion']}}</th>
                                     <th scope="col"> {{$cancion['lyrics']}}</th>
-                                    <th scope="col"> {{$cancion['audio']}}</th>
+                                    <th scope="col"> <audio controls src="data:audio/mp3;base64,{{$cancion['audio']}}"></audio></th>
                                     <th scope="col"> {{$cancion['album_id']}}</th>
                                     <th class="text-center">
                                         <form action="{{url('/cancion/'.$cancion->id)}}" method="POST">

@@ -50,7 +50,12 @@ class cancionController extends Controller
         try{
             $generos = $request->genero_id;
             $artistas = $request->artista_id;
+            
             $datos = request()->except('genero_id','artista_id','_token');
+            if($request->hasFile('audio')){
+                $datos['audio'] = base64_encode(file_get_contents($request->file('audio')));
+            }
+            //return response()->json($datos,200);
             CancionModel::create($datos);
             $cancion_id = DB::table('cancion')->orderBy('created_at', 'desc')->first();
 
