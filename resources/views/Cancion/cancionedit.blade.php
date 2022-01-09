@@ -53,40 +53,10 @@
                             <label class="form-label fw-bolder ">Género:</label>
                             <select multiple class="form-select form-control shadow-sm" name="genero_id[]" required>
                                 <option value="" disabled >Seleccione el álbum</option>
-                                @foreach ($generocanciones as $generocancion)
-                                    
-                                    @foreach ($generos as $genero)
-
-                                        @if ($genero['id'] == $generocancion['genero_id'] && $generocancion['cancion_id'] == $cancion['id'])           
-                                            <option value="{{ $genero['id'] }}" selected>{{ $genero['nombre'] }}</option>
-                                        @else
-                                            <option value="{{ $genero['id'] }}" required>{{ $genero['nombre'] }}</option>
-                                        @endif
-                                        
-                                    @endforeach
-                                    
+                                @foreach ($generos as $genero)
+                                <option value="{{ $genero['id'] }}" required>{{ $genero['nombre'] }}</option>   
                                 @endforeach
                             </select>
-
-                            @foreach ($generocanciones as $generocancion)
-                                @if ($generocancion['cancion_id']==$cancion['id'])
-                                    <h1>{{$generocancion->genero_id}}</h1>
-                                @else
-                                    
-                                @endif
-                                
-                            @endforeach
-
-                            alskdjfsa
-
-                            @foreach ($generos as $genero)
-                                @if ($genero )
-                                    <h1>si</h1>
-                                    
-                                @else
-                                    
-                                @endif
-                            @endforeach
                             
                         </div>
                         <div class="mt-3 col-sm-12 col-md-6">
