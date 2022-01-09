@@ -102,6 +102,7 @@
                                             {{@method_field('DELETE')}}
                                             <button type="submit" class="btn p-0" onclick="return confirm('¿Desea borrarlo realmete?')"><span class="material-icons" style="color: red;">delete</span></button>
                                         </form>
+                                        <a href="{{ url('/cancion/' . $cancion->id . '/edit') }}"><span class="material-icons text-secondary">edit</span></a>
                                     </th>
                                 </tr>
                             @endforeach

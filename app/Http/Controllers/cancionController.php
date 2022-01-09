@@ -103,9 +103,17 @@ class cancionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+        try{
+            $albumes = AlbumModel::all();
+            $generocanciones = GeneroCancionModel::all();
+            $generos = GeneroModel::all();
+            $artistas = ArtistaModel::all();
+            $cancion = CancionModel::findOrFail($id);
+            return response()->view('Cancion.cancionedit', compact('cancion','artistas','generos','albumes','generocanciones'));
+        }catch(\Throwable $th){
+            return $th;
+        }
     }
 
     /**

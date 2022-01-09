@@ -66,10 +66,8 @@
                                     <th class="text-center"> <img class="shadow" style="width:100px"
                                             src="data:image/jpeg;base64,{{ $artista['imagen'] }}"></th>
                                     <th class="text-center">
-                                        <a onclick="eliminar({{ $artista['id'] }})" href=""> <span class="material-icons"
-                                                style="color: red;">delete</span></a>
-                                        <a href="{{ url('/artista/' . $artista->id . '/edit') }}"><span
-                                                class="material-icons text-secondary">edit</span></a>
+                                        <a onclick="eliminar({{ $artista['id'] }})" href=""> <span class="material-icons" style="color: red;">delete</span></a>
+                                        <a href="{{ url('/artista/' . $artista->id . '/edit') }}"><span class="material-icons text-secondary">edit</span></a>
                                     </th>
                                 </tr>
                             @endforeach
