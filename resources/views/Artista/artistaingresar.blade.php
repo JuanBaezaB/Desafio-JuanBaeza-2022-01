@@ -5,7 +5,7 @@
         <a class="navbar-brand ps-2" href="index.php">
             <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="" width="50" height="50" class="d-inline-block align-top" >
         </a>
-
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,50 +39,49 @@
 @endsection
 
 @section('body')
+
+
     <div class="container">
 
         <div class="row">
-            <div class="col-12  pb-5 pt-3 mb-4">
+            
+            <div class="col-12 pb-5 pt-3 mb-3">
                 <div class="row">
                     <div class="col-lg-4">
                         <a href="{{url('/artista')}}"><span class="material-icons  text-secondary align-middle">keyboard_arrow_left</span> </a>
                     </div>
                     <div class="mb-3 col-lg-4 text-center">
                         <span class="fs-2 fw-bolder">
-                            EDITAR ARTISTA
+                            FORMULARIO PARA INGRESAR UN ARTISTA
                         </span>
                     </div>
                 </div>
-                <form action="{{url('/artista/'.$artista->id)}}" enctype="multipart/form-data" method="POST">
+                <form action="{{ url('artista') }}" enctype="multipart/form-data" method="POST">
                     @csrf
-                    {{method_field('PATCH')}}
                     <div class="row">
-                        <div class="col-sm-12 col-md-6 mb-3">
+                        <div class="col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Nombre:</label>
-                            <input type="text" class="form-control shadow-sm" name="nombre" maxlength="100" value="{{$artista->nombre}}" required>
-                            
+                            <input type="text" class="form-control shadow-sm" name="nombre" maxlength="100"
+                                placeholder="Marcianeke" required>
                         </div>
-                        <div class="col-12">
-                            <div class="row">
-                                <div class=" col-sm-12 col-md-6">
-                                    <label class="form-label fw-bolder">Imágen:</label>
-                                    <input type="file" accept="image/*" class="form-control shadow-sm" name="imagen">
-                                </div>
-                                <div class="col-6 mt-4">
-                                    <img class="shadow" style="width:100px" src="data:image/jpeg;base64,{{$artista['imagen']}}">
-                                </div>
-                            </div>
+                        <div class=" col-sm-12 col-md-6">
+                            <label class="form-label fw-bolder">Imágen:</label>
+                            <input type="file" accept="image/*" class="form-control shadow-sm" name="imagen" required>
                         </div>
-                        <div class="col-lg-12 mt-3">
+                        <div class="mt-3 col-lg-12">
                             <label class="form-label fw-bolder">Biografía:</label>
-                            <textarea name="descripcion" class="form-control shadow-sm" cols="30" rows="2" maxlength="200" required>{{$artista->descripcion}}</textarea>
+                            <textarea name="descripcion" class="form-control shadow-sm" cols="30" rows="2" maxlength="200"
+                                placeholder="" required></textarea>
                         </div>
-                        <div class="row w-25 mx-auto mt-3">
+                        <div class="row w-25 mx-auto mt-4">
                             <button class="btn btn-secondary shadow-sm" type="submit">Guardar</button>
                         </div>
                     </div>
                 </form>
+
             </div>
+
         </div>
     </div>
+
 @endsection

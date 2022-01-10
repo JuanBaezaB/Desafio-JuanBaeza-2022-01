@@ -37,7 +37,11 @@ class cancionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        return csrf_token();
+            $canciones = CancionModel::all();
+            $albumes = AlbumModel::all();
+            $generos = GeneroModel::all();
+            $artistas = ArtistaModel::all();
+        return response()->view('Cancion.cancioningresar', compact('canciones','albumes','generos','artistas'));
     }
 
     /**
@@ -48,39 +52,28 @@ class cancionController extends Controller
      */
     public function store(Request $request){
         try{
-            $generos = $request->genero_id;
-            $artistas = $request->artista_id;
-            
-            $datos = request()->except('genero_id','artista_id','_token');
+            $generos = $request->selectgenero;
+            $artistas = $request->selectartista;
+            $datos = request()->except('genero_id','artista_id','_token','selectgenero','selectartista');
             if($request->hasFile('audio')){
                 $datos['audio'] = base64_encode(file_get_contents($request->file('audio')));
             }
-            //return response()->json($datos,200);
             CancionModel::create($datos);
             $cancion_id = DB::table('cancion')->orderBy('created_at', 'desc')->first();
-
-            //return response()->json($cancion_id->id,200);
-
 
             foreach ($generos as $genero) {
                 GeneroCancionModel::create([
                     'cancion_id'=>$cancion_id->id,
-                    'genero_id'=>$genero
+                    'genero_id'=>(int)$genero
                 ]);
             }
-
-            foreach ($artistas as $artista) {
-                
+            foreach ($artistas as $artista) { 
                 CancionArtistaModel::create([
                     'cancion_id'=>$cancion_id->id,
-                    'artista_id'=>$artista
+                    'artista_id'=>(int)$artista
                 ]);
             }
             
-            
-
-            
-
             return back()->with('mensaje', 'Nota agregada');
         }catch(\Throwable $th){
             return $th;
@@ -108,14 +101,34 @@ class cancionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id){
+    public function edit($id){  
+        $id_generos = array();
+        $generocanciones = GeneroCancionModel::all();
+        $i = 0;
+        foreach ($generocanciones as $datos) {
+            if($datos->cancion_id==$id){
+                $id_generos[$i] = $datos->genero_id;
+                $i++;
+            }
+        }
+        $id_artistas = array();
+        $artistacanciones = CancionArtistaModel::all();
+        $i = 0;
+        foreach ($artistacanciones as $dato) {
+            if($dato->cancion_id==$id){
+                $id_artistas[$i] = $dato->artista_id;
+                $i++;
+            }
+        }        
+        
         try{
             $albumes = AlbumModel::all();
-            $generocanciones = GeneroCancionModel::all();
             $generos = GeneroModel::all();
             $artistas = ArtistaModel::all();
             $cancion = CancionModel::findOrFail($id);
-            return response()->view('Cancion.cancionedit', compact('cancion','artistas','generos','albumes','generocanciones'));
+            
+
+            return response()->view('Cancion.cancionedit', compact('cancion','artistas','generos','albumes','id_generos','id_artistas'));
         }catch(\Throwable $th){
             return $th;
         }
@@ -129,14 +142,41 @@ class cancionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
+        //return response()->json($request,200);
         try {
+            
             $cancion = CancionModel::find($id);
+            
             $cancion->titulo=$request->titulo;
             $cancion->duracion=$request->duracion; 
             $cancion->lyrics=$request->lyrics; 
-            $cancion->audio=$request->audio;
+            if($request->hasFile('audio')){
+                $cancion->audio = base64_encode(file_get_contents($request->file('audio')));
+            }
             $cancion->album_id=$request->album_id;
             $cancion->save();
+            
+            GeneroCancionModel::destroy($id);
+            CancionArtistaModel::destroy($id);
+            $generos = $request->selectgenero;
+
+            //return response()->json($generos,200);
+            $artistas = $request->selectartista;
+            foreach ($generos as $genero) {
+                GeneroCancionModel::create([
+                    'cancion_id'=>$id,
+                    'genero_id'=>(int)$genero
+                ]);
+            }
+            foreach ($artistas as $artista) { 
+                CancionArtistaModel::create([
+                    'cancion_id'=>$id,
+                    'artista_id'=>(int)$artista
+                ]);
+            }
+            
+            return back();
+
         } catch (\Throwable $th) {
             throw $th;
         }

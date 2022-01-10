@@ -30,7 +30,9 @@ class albumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        return csrf_token();
+        $artistas = ArtistaModel::all();
+        return response()->view('Album.albumingresar', compact('artistas'));
+
     }
 
     /**

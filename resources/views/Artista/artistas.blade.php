@@ -6,55 +6,70 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
 @endsection
 
-@section('body')
+@section('nav')
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
+        <a class="navbar-brand ps-2" href="index.php">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="" width="50" height="50" class="d-inline-block align-top" >
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-between" id="collapsibleNavbar">
+            <ul class="navbar-nav ">
+
+            </ul>
+            <ul class="navbar-nav gap-2 text-center mt-2 mb-2 me-3">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary text-white fw-bolder" href="{{url('/artista')}}">ARTISTA</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link fw-bolder" href="{{url('/album')}}">ÁLBUM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bolder" href="{{url('/cancion')}}">CANCIÓN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bolder" href="{{url('/genero')}}">GÉNERO</a>
+                </li>
+            </ul> 
+            <ul class="navbar-nav text-center mt-2 mb-2 me-3">
+                <li class="nav-item">
+                    
+                    <a class="btn btn-dark " href="#" role="button"><span class="material-icons align-middle">logout</span> SALIR</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+@endsection
+
+@section('body')
+    
+    
 
     <div class="container">
-
-        <div class="row">
-            <div class="col-12 pb-5 pt-3 mb-3">
-                <div class="mb-3 text-center">
-                    <span class="fs-2 fw-bolder">
-                        INGRESAR ARTISTA
-                    </span>
-                </div>
-                <form action="{{ url('artista') }}" enctype="multipart/form-data" method="POST">
-                    @csrf
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <label class="form-label fw-bolder">Nombre:</label>
-                            <input type="text" class="form-control shadow-sm" name="nombre" maxlength="100"
-                                placeholder="Marcianeke" required>
-                        </div>
-                        <div class=" col-sm-12 col-md-6">
-                            <label class="form-label fw-bolder">Imágen:</label>
-                            <input type="file" accept="image/*" class="form-control shadow-sm" name="imagen" required>
-                        </div>
-                        <div class="mt-3 col-lg-12">
-                            <label class="form-label fw-bolder">Biografía:</label>
-                            <textarea name="descripcion" class="form-control shadow-sm" cols="30" rows="2" maxlength="200"
-                                placeholder="" required></textarea>
-                        </div>
-                        <div class="row w-25 mx-auto mt-4">
-                            <button class="btn btn-secondary shadow-sm" type="submit">Guardar</button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            <div class="col-12 text-center">
+        
+        <div class="row ">
+            <div class="col-12 text-center mt-3">
                 <span class="fs-2 fw-bolder">
                     ARTISTAS
                 </span>
             </div>
-            <div class="col-12 mb-5">
+
+            <div class="col-4 text-center mb-5">
+                <a class="btn btn-primary nav-link text-white" style="width: 200px;" href="{{url('/artista/create')}}">Ingresar artista</a>
+            </div>
+
+            <div class="col-12 mb-3">
                 <div class="table-responsive  ">
                     <table id="myTable" class="table table-bordered table-striped table-hover" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 100px;">Nombre</th>
-                                <th scope="col">Biografia</th>
-                                <th scope="col" class="text-center" style="width: 150px;">Imagen</th>
+                                <th scope="col">Biografía</th>
+                                <th scope="col" class="text-center" style="width: 150px;">Imágen</th>
                                 <th scope="col" style="width: 80px;">Opciones</th>
                             </tr>
                         </thead>
@@ -74,11 +89,12 @@
                         </tbody>
 
                     </table>
-
+                    
 
                 </div>
 
             </div>
+
         </div>
     </div>
     <style>

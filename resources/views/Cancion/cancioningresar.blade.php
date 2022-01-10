@@ -1,4 +1,5 @@
 @extends('app')
+
 @section('nav')
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -39,11 +40,17 @@
         </div>
     </nav>
 @endsection
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+@endsection
+
 @section('body')
     <div class="container">
 
         <div class="row">
-            
+
             <div class="col-12  pb-5 pt-3 mb-4">
                 
                 <div class="row">
@@ -52,100 +59,137 @@
                     </div>
                     <div class="mb-3 col-lg-4 text-center">
                         <span class="fs-2 fw-bolder">
-                            EDITAR CANCIÓN
+                            FORMULARIO PARA INGRESAR UNA CANCIÓN
                         </span>
                     </div>
                 </div>
-                <form action="{{url('/cancion/'.$cancion->id)}}" enctype="multipart/form-data" method="POST">
+                <form action="{{ url('cancion') }}" enctype="multipart/form-data" method="POST">
                     @csrf
-                    {{method_field('PATCH')}}
                     <div class="row">
-                        
+
                         <div class="col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Título:</label>
-                            <input type="text" class="form-control shadow-sm" name="titulo" maxlength="100" value="{{$cancion->titulo}}" required>
+                            <input type="text" class="form-control shadow-sm" name="titulo" maxlength="100"
+                                placeholder="Rock" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Duración:</label>
-                            <input type="text" class="form-control shadow-sm" name="duracion" maxlength="100" value="{{$cancion->duracion}}" required>
-                            <input type="datetime">
-                        </div>
-                        <div class="mt-3 col-sm-12 mb-3 col-md-6">
-                            <label class="form-label fw-bolder">Letra:</label>
-                            <input type="text" class="form-control shadow-sm" name="lyrics" maxlength="100" value="{{$cancion->lyrics}}"required>
+                            <input type="text" class="form-control shadow-sm" name="duracion" maxlength="100"
+                                placeholder="hh:mm:ss" required>
                         </div>
                         <div class="mt-3 col-sm-12 col-md-6">
-
+                            <label class="form-label fw-bolder">Letra:</label>
+                            <input type="text" class="form-control shadow-sm" name="lyrics" maxlength="100"
+                                placeholder="Rock" required>
+                        </div>
+                        <div class=" mt-3 col-sm-12 col-md-6">
+                            <label class="form-label fw-bolder">Audio:</label>
+                            <input type="file" class="form-control shadow-sm" name="audio" accept=".mp3,audio/*" required>
+                            
+                            <button id="audio"> </button>
+                        </div>
+                        <div class="mt-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder ">Álbum:</label>
-                            <select  class="form-select form-control shadow-sm" name="album_id" required>
-                                <option value="" disabled >Seleccione el álbum</option>
+                            <select class="form-select form-control shadow-sm" name="album_id" required>
+                                <option value="" disabled selected>Seleccione el álbum</option>
                                 @foreach ($albumes as $album)
-                                    @if ($album['id']==$cancion['album_id'])
-                                        <option value="{{ $album['id'] }}" selected >{{ $album['titulo'] }}</option>
-                                    @else
-                                        <option value="{{ $album['id'] }}" required>{{ $album['titulo'] }}</option>
-                                    @endif 
+                                    <option value="{{ $album['id'] }}" required>{{ $album['titulo'] }}</option>
                                 @endforeach
                             </select>
-
                         </div>
-                        
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-12">
-                                    
-                                </div>
-                                <div class=" col-sm-6">
-                                    <label class="form-label fw-bolder">Audio:</label>
-                                    <input type="file" class="form-control shadow-sm" name="audio" accept=".mp3,audio/*" >
-                                </div>
-                                <div class="col-6">
-                                    <audio class="mt-4" controls src="data:audio/mp3;base64,{{ $cancion['audio'] }}"></audio>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-3 col-sm-12 col-md-6 ">
+                        <div class="mt-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder ">Géneros:</label>
                             <div class="button-group ">
                                 <button type="button" class=" shadow-sm border btn btn-default dropdown-toggle" data-toggle="dropdown"><span class=""></span> Seleccione<span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     @foreach ($generos as $genero)
-                                        @if ( in_array($genero->id, $id_generos))
-                                            <li><a href="#" class="text-dark" style="text-decoration:none" data-value="option1" tabIndex="-1"> <input type="checkbox" checked name="selectgenero[{{ $genero->nombre }}]" id="counter{{ $genero->nombre }}" value="{{ $genero['id'] }}" class="ms-2 form-check-input"/>&nbsp;{{ $genero['nombre'] }}</a></li>
-                                        @else
-                                            <li><a href="#" class="text-dark" style="text-decoration:none" data-value="option1" tabIndex="-1"> <input type="checkbox" name="selectgenero[{{ $genero->nombre }}]" id="counter{{ $genero->nombre }}" value="{{ $genero['id'] }}" class="ms-2 form-check-input"/>&nbsp;{{ $genero['nombre'] }}</a></li>
-                                        @endif
-                                        
+                                        <li><a href="#" class="text-dark" style="text-decoration:none" data-value="option1" tabIndex="-1"> <input type="checkbox" name="selectgenero[{{ $genero->nombre }}]" id="counter{{ $genero->nombre }}" value="{{ $genero['id'] }}" class="ms-2 form-check-input"/>&nbsp;{{ $genero['nombre'] }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
-                            
                         </div>
-                        <div class="mt-3 col-sm-12 ">
+                        
+                        <div class="mt-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder ">Colaboradores:</label>
                             <div class="button-group ">
-                                <button type="button" class=" shadow-sm border btn btn-default dropdown-toggle" data-toggle="dropdown"><span class=""></span> Seleccione<span class="caret"></span></button>
+                                <button type="button" class=" shadow-sm border btn btn-default dropdown-toggle" data-toggle="dropdown"><span class=""></span> Seleccione <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     @foreach ($artistas as $artista)
-                                        @if ( in_array($artista->id, $id_artistas))
-                                            <li><a href="#" class="text-dark" style="text-decoration:none" data-value="option1" tabIndex="-1"> <input type="checkbox" checked name="selectartista[{{ $artista->nombre }}]" id="counter{{ $artista->nombre }}" value="{{ $artista['id'] }}" class="ms-2 form-check-input"/>&nbsp;{{ $artista['nombre'] }}</a></li>
-                                        @else
-                                            <li><a href="#" class="text-dark" style="text-decoration:none" data-value="option1" tabIndex="-1"> <input type="checkbox" name="selectartista[{{ $artista->nombre }}]" id="counter{{ $artista->nombre }}" value="{{ $artista['id'] }}" class="ms-2 form-check-input"/>&nbsp;{{ $artista['nombre'] }}</a></li>
-                                        @endif
-                                        
+                                        <li><a href="#" class="text-dark " style="text-decoration:none" data-value="option1" tabIndex="-1"> <input type="checkbox" name="selectartista[{{ $artista->nombre }}]" id="counter{{ $artista->nombre }}" value="{{ $artista['id'] }}" class="ms-2  form-check-input"/>&nbsp;{{ $artista['nombre'] }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
                         </div>
-
                         <div class=" col-12 text-center mt-4">
                             <button class="btn btn-secondary shadow-sm" type="submit">Guardar</button>
                         </div>
                     </div>
                 </form>
             </div>
+            
         </div>
     </div>
+
+@endsection
+
+
+@section('js')
+<script>
+    var audio1 = document.getElementById("audio1");
+    var variableAudio = document.querySelector('#audio')
+    audio1.onloadeddata = function() {
+        alert(audio1.duration);
+        var duracion = audio1.duration;
+    };
+    const presionado = function(){
+
+    }
+    variableAudio.addEventListener('click', presionado);
+</script>
+<script>
+    
+
+    
+</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
+                }
+            });
+        });
+        var options = [];
+
+        $('.dropdown-menu a').on('click', function(event) {
+
+            var $target = $(event.currentTarget),
+                val = $target.attr('data-value'),
+                $inp = $target.find('input'),
+                idx;
+
+            if ((idx = options.indexOf(val)) > -1) {
+                options.splice(idx, 1);
+                setTimeout(function() {
+                    $inp.prop('checked', false)
+                }, 0);
+            } else {
+                options.push(val);
+                setTimeout(function() {
+                    $inp.prop('checked', true)
+                }, 0);
+            }
+
+            $(event.target).blur();
+
+            console.log(options);
+            return false;
+        });
+
+    </script>
+
 
 @endsection

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class GeneroCancionModel extends Model{
     use HasFactory;
     protected $table = 'genero_cancion';
+    protected $primaryKey = 'cancion_id';
     protected $fillable = [
         'cancion_id',
         'genero_id'
