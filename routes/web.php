@@ -24,3 +24,7 @@ Route::resource('artista',artistaController::class);
 Route::resource('album',albumController::class);
 Route::resource('cancion',cancionController::class);
 Route::resource('genero',generoController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
