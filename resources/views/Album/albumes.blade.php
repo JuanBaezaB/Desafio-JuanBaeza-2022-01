@@ -76,7 +76,7 @@
                                 <tr>
                                     <th scope="col"> {{ $album['titulo'] }}</th>
                                     <th scope="col"> {{ $album['fecha_lanzamiento'] }}</th>
-                                    <th scope="col"> {{  gmdate("m", $album['duracion'])  }} min y {{gmdate("s", $album['duracion']) }} seg</th>
+                                    <th scope="col"> {{  gmdate("i", $album['duracion'])  }} min y {{gmdate("s", $album['duracion']) }} seg</th>
                                     <th scope="col"> <img class="shadow" style="width:100px"
                                             src="data:image/jpeg;base64,{{ $album['imagen'] }}"></th>
                                     <th scope="col"> 

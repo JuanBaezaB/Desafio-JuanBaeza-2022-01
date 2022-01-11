@@ -15,4 +15,9 @@ class AlbumModel extends Model {
         'imagen',
         'artista_id'
     ];
+    protected $with=['artista'];
+    public function artista(){
+        return $this->hasOne(ArtistaModel::class,'id');
+        
+    }
 }

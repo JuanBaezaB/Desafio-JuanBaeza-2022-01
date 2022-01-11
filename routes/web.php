@@ -18,14 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::resource('artista',artistaController::class);
 Route::resource('album',albumController::class);
 Route::resource('cancion',cancionController::class);
 Route::resource('genero',generoController::class);
-Route::resource('landingpage',landingpageController::class);
+//Route::resource('landingpage',landingpageController::class);
 
 Auth::routes();
 
@@ -36,8 +34,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', [ArtistaController::class, 'index'])->name('home');
 });
 
-Route::get('/', function () {
-    return view('landingpage');
-}); // recordar cambiar
+Route::get('/', [landingpageController::class, 'index']);
+
 
 

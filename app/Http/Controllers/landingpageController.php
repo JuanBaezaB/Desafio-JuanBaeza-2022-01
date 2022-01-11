@@ -19,11 +19,12 @@ class landingpageController extends Controller
      */
     public function index(){
         try{
-            $canciones = CancionModel::all();
-            $albumes = AlbumModel::all();
+            /*$canciones = CancionModel::all();
+            
             $generos = GeneroModel::all();
-            $artistas = ArtistaModel::all();
-            return response()->view('landingpage', compact('artistas','canciones','albumes','generos'));
+            $artistas = ArtistaModel::all();*/
+            $albumes = AlbumModel::all();
+            return response()->view('landingpage', compact('albumes'));
         }catch(\Throwable $th){
             return $th;
         }
