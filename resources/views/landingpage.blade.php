@@ -1,8 +1,9 @@
 @extends('app')
 
 @section('css')
-   
-  
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 @endsection
 
 @section('nav')
@@ -46,12 +47,57 @@
 
 @endsection
 @section('body')
+    <div class="container">
+        <div id="slider" class="owl-carousel owl-theme">
+            @foreach ($collection as $item)
+                <div class="card item" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            @endforeach
+
+            <div class="item">
+                <h4>1</h4>
+            </div>
 
 
-    
+        </div>
+    </div>
+
+
+
+
 @endsection
 
 @section('js')
-    
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel();
+        });
+        $('.sliderl').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            autoplay: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 @endsection
