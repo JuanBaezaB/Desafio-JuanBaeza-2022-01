@@ -65,11 +65,7 @@
                             <label class="form-label fw-bolder">Fecha de lanzamiento:</label>
                             <input type="date" class="form-control shadow-sm" name="fecha_lanzamiento" required>
                         </div>
-                        <div class="mb-3 col-sm-12 col-md-6">
-                            <label class="form-label fw-bolder">Duración:</label>
-                            <input type="text" class="form-control shadow-sm" name="duracion" maxlength="100"
-                                placeholder="Marcianeke" required>
-                        </div>
+                        
 
                         <div class="mb-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder ">Artista:</label>
@@ -83,6 +79,11 @@
                         <div class="mb-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Imágen:</label>
                             <input type="file" accept="image/*" class="form-control shadow-sm" name="imagen" required>
+                        </div>
+                        <div class="mb-3 col-sm-12 col-md-6">
+                            <label class="form-label fw-bolder"></label>
+                            <input type="hidden" class="form-control shadow-sm" name="duracion" value="0"
+                                placeholder="Marcianeke" required>
                         </div>
                         <div class="col-lg-12 text-center mt-4">
                             <button class="btn btn-secondary shadow-sm" type="submit">Guardar</button>

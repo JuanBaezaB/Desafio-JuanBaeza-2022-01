@@ -13,6 +13,14 @@ class albumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     
+     
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index(){
         try{
             $albumes = AlbumModel::all();
@@ -100,7 +108,7 @@ class albumController extends Controller
             $album = AlbumModel::find($id);
             $album->titulo=$request->titulo;
             $album->fecha_lanzamiento=$request->fecha_lanzamiento; 
-            $album->duracion=$request->duracion;
+            //$album->duracion=$request->duracion;
             if($request->hasFile('imagen')){
                 $album['imagen'] = base64_encode(file_get_contents($request->file('imagen')));
             }

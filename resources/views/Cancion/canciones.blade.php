@@ -77,7 +77,7 @@
                             @foreach ($canciones as $cancion)
                                 <tr>
                                     <th scope="col"> {{ $cancion['titulo'] }}</th>
-                                    <th scope="col"> {{ $cancion['duracion'] }}</th>
+                                    <th scope="col"> {{ gmdate("i", $cancion['duracion'])}} min y {{gmdate("s", $cancion['duracion']) }} seg</th>
                                     <th scope="col"> {{ $cancion['lyrics'] }}</th>
                                     <th scope="col"> <audio id="audio1" controls
                                             src="data:audio/mp3;base64,{{ $cancion['audio'] }}"></audio></th>
@@ -88,19 +88,22 @@
                                             @endif
                                         @endforeach
                                     </th>
-                                    <th class="text-center">
-                                        <form action="{{ url('/cancion/' . $cancion->id) }}" method="POST">
-                                            @csrf
-                                            {{ @method_field('DELETE') }}
-                                            <button type="submit" class="btn p-0"
-                                                onclick="return confirm('¿Desea borrarlo realmete?')">
-                                                <span class="material-icons" style="color: red;">delete</span></button>
-                                        </form>
-
-
-                                        <br>
-                                        <a href="{{ url('/cancion/' . $cancion->id . '/edit') }}"><span
-                                                class="material-icons text-secondary">edit</span></a>
+                                    <th class="text-center text-align" >
+                                        <div class="row">
+                                            <div class="col-6 text-end">
+                                                <form action="{{ url('/cancion/' . $cancion->id) }}" method="POST">
+                                                    @csrf
+                                                    {{ @method_field('DELETE') }}
+                                                    <button type="submit" class="btn p-0"
+                                                        onclick="return confirm('¿Desea borrarlo realmete?')">
+                                                        <span class="material-icons" style="color: red;">delete</span></button>
+                                                </form>
+                                            </div>
+                                            <div class="col-6 text-start">
+                                                <a href="{{ url('/cancion/' . $cancion->id . '/edit') }}"><span
+                                                        class="material-icons text-secondary">edit</span></a>
+                                            </div>
+                                        </div>
                                     </th>
                                 </tr>
                             @endforeach
@@ -126,14 +129,7 @@
 
 
 @section('js')
-    <script>
-        var audio1 = document.getElementById("audio1");
 
-        audio1.onloadeddata = function() {
-            alert(audio1.duration);
-            var duracion = audio1.duration;
-        };
-    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>

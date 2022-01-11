@@ -70,25 +70,9 @@
                         <div class="col-sm-12 col-md-6">
                             <label class="form-label fw-bolder">Título:</label>
                             <input type="text" class="form-control shadow-sm" name="titulo" maxlength="100"
-                                placeholder="Rock" required>
+                                placeholder="Dimelo Ma" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label class="form-label fw-bolder">Duración:</label>
-                            <input type="text" class="form-control shadow-sm" name="duracion" maxlength="100"
-                                placeholder="hh:mm:ss" required>
-                        </div>
-                        <div class="mt-3 col-sm-12 col-md-6">
-                            <label class="form-label fw-bolder">Letra:</label>
-                            <input type="text" class="form-control shadow-sm" name="lyrics" maxlength="100"
-                                placeholder="Rock" required>
-                        </div>
-                        <div class=" mt-3 col-sm-12 col-md-6">
-                            <label class="form-label fw-bolder">Audio:</label>
-                            <input type="file" class="form-control shadow-sm" name="audio" accept=".mp3,audio/*" required>
-                            
-                            <button id="audio"> </button>
-                        </div>
-                        <div class="mt-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder ">Álbum:</label>
                             <select class="form-select form-control shadow-sm" name="album_id" required>
                                 <option value="" disabled selected>Seleccione el álbum</option>
@@ -97,7 +81,91 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mt-3 col-sm-12 col-md-6">
+                        
+                        <div class="mt-3 col-sm-12 ">
+                            <label class="form-label fw-bolder">Letra:</label>
+
+                                <textarea name="lyrics" class="form-control shadow-sm" cols="30" rows="10" maxlength="12000" placeholder="Brr
+Marcianeke
+Vamo' a estar con Pailita
+Dimelo má
+Ando en busca de una criminal (Ah, ah)
+Esa que el gatillo le gusta jalar (Rata-ta)
+Que le guste flotar y fumar (brr)
+Tussi, keta quiere' mezclar
+Dimelo má
+Ando en busca de una criminal (Ah, ah)
+Esa que el gatillo le gusta jalar (Rata-ta)
+Que le guste flotar y fumar
+Tussi, keta pura quiere' mezclar
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Esperame que ahora entro yo
+Y lo que pide yo lo traje
+No visto de traje
+Puro corte calle, no de maquillaje
+Pronto coronamos y nos vamo' de viaje
+Tanto hit que hago que lo' culo bajen
+Ella se va de shopping
+Sale positivo si se hace el doping
+Baila twerk con un poco de popping
+Los fardos en el botín
+Si quieren letra llamen pa' mi booking
+Generando, sigo en la mía lowkey
+Cooking en el estudio con tu woman
+Tanto whisky, pisco que hasta lo' vecinos toman
+Si se tiran pa' aca puede que la arena coman
+Ja, en el chanteo titulado sin diploma
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Di-dimelo má
+Ah, pe-peligrosa
+Quiero ver como perreando me acosa
+Eso de atra' con el Gucci me lo roza
+Tengo tussi del naranjo me aburrio el rosa
+Capaz que tosa con el blunt
+Sprite con Flemibron
+Louis Vuitton, le quito la polera Champion
+A tu pretendiente con la fory lo espanto
+Puro perro, le doy de comer Champion Dog
+Ese toto lo corono yo
+La movie en play no hay stop
+Flow de sobra no hay stock
+Me la topo en la disco queda en shock
+My love, rica en las redes y en persona
+No usa Photoshop
+La llevo a comprar blone' al growshop
+En ropa interior los do'
+Me roza su vicky con mi boxer Top
+Dimelo má
+Ando en busca de una criminal (Ah, ah)
+Esa que el gatillo le gusta jalar (Rata-ta)
+Que le guste flotar y fumar
+Tussi, keta quiere' mezclar
+Dimelo má
+Ando en busca de una criminal (Ah, ah)
+Esa que el gatillo le gusta jalar (Rata-ta)
+Que le guste flotar y fumar
+Tussi, keta pura quiere' mezclar
+Marcianeke, Pailita
+Young Varas" 
+                                required></textarea>
+                        </div>
+                        <div class=" mt-3 col-sm-12 col-md-6">
+                            <label class="form-label fw-bolder">Audio:</label>
+                            <input type="file" class="form-control shadow-sm" name="audio" accept=".mp3,audio/*" required>
+                        </div>
+                        
+                        <div class="mt-3 col-sm-12 col-md-12">
                             <label class="form-label fw-bolder ">Géneros:</label>
                             <div class="button-group ">
                                 <button type="button" class=" shadow-sm border btn btn-default dropdown-toggle" data-toggle="dropdown"><span class=""></span> Seleccione<span class="caret"></span></button>
@@ -109,7 +177,7 @@
                             </div>
                         </div>
                         
-                        <div class="mt-3 col-sm-12 col-md-6">
+                        <div class="mt-3 col-sm-12 col-md-12">
                             <label class="form-label fw-bolder ">Colaboradores:</label>
                             <div class="button-group ">
                                 <button type="button" class=" shadow-sm border btn btn-default dropdown-toggle" data-toggle="dropdown"><span class=""></span> Seleccione <span class="caret"></span></button>
@@ -120,6 +188,8 @@
                                 </ul>
                             </div>
                         </div>
+                        <input type="hidden" value="0" name="like">
+                        <input type="hidden" value="0" name="visitas">
                         <div class=" col-12 text-center mt-4">
                             <button class="btn btn-secondary shadow-sm" type="submit">Guardar</button>
                         </div>
@@ -135,16 +205,7 @@
 
 @section('js')
 <script>
-    var audio1 = document.getElementById("audio1");
-    var variableAudio = document.querySelector('#audio')
-    audio1.onloadeddata = function() {
-        alert(audio1.duration);
-        var duracion = audio1.duration;
-    };
-    const presionado = function(){
-
-    }
-    variableAudio.addEventListener('click', presionado);
+    document.getElementById("settime").value = "00:00:00";
 </script>
 <script>
     

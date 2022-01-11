@@ -65,10 +65,7 @@
                             <label class="form-label fw-bolder">Fecha de lanzamiento:</label>
                             <input type="date" class="form-control shadow-sm" name="fecha_lanzamiento" value="{{$album['fecha_lanzamiento']}}" required>
                         </div>
-                        <div class="mb-3 col-sm-12 col-md-6">
-                            <label class="form-label fw-bolder">Duración:</label>
-                            <input type="text" class="form-control shadow-sm" name="duracion" maxlength="100" value="{{$album['duracion']}}" required>
-                        </div>
+                       
                         
                         <div class="mb-3 col-sm-12 col-md-6">
                             <label class="form-label fw-bolder ">Artista:</label>

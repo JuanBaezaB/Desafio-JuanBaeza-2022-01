@@ -17,7 +17,7 @@ class CreateAlbumTable extends Migration
             $table->tinyIncrements('id');
             $table->string('titulo');
             $table->date('fecha_lanzamiento');
-            $table->string('duracion');
+            $table->integer('duracion');
             $table->longtext('imagen');
             $table->unsignedTinyInteger('artista_id');
             $table->foreign('artista_id')->references('id')->on('artista')->onDelete('cascade')->onUpdate('cascade');

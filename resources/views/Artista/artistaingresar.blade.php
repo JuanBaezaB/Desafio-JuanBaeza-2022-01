@@ -71,7 +71,7 @@
                         <div class="mt-3 col-lg-12">
                             <label class="form-label fw-bolder">Biografía:</label>
                             <textarea name="descripcion" class="form-control shadow-sm" cols="30" rows="2" maxlength="200"
-                                placeholder="" required></textarea>
+                                placeholder="Matías Muñoz (Talca, 11 de enero de 2002), más conocido como Marcianeke, es un cantante chileno. Tuvo reconocimiento en Spotify por la popularidad de su sencillo «Dímelo má» en colaboración con Pailita" required></textarea>
                         </div>
                         <div class="row w-25 mx-auto mt-4">
                             <button class="btn btn-secondary shadow-sm" type="submit">Guardar</button>

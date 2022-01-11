@@ -37,8 +37,18 @@
             </ul> 
             <ul class="navbar-nav text-center mt-2 mb-2 me-3">
                 <li class="nav-item">
+                    <div class="" >
+                        <a class="btn btn-dark" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();"><span class="material-icons align-middle">logout</span> SALIR
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
                     
-                    <a class="btn btn-dark " href="#" role="button"><span class="material-icons align-middle">logout</span> SALIR</a>
+                    
                 </li>
             </ul>
         </div>
@@ -81,8 +91,8 @@
                                     <th class="text-center"> <img class="shadow" style="width:100px"
                                             src="data:image/jpeg;base64,{{ $artista['imagen'] }}"></th>
                                     <th class="text-center">
-                                        <a onclick="eliminar({{ $artista['id'] }})" href=""> <span class="material-icons" style="color: red;">delete</span></a>
-                                        <a href="{{ url('/artista/' . $artista->id . '/edit') }}"><span class="material-icons text-secondary">edit</span></a>
+                                        <a onclick="eliminar({{ $artista['id'] }})" class="me-3" href=""> <span class="material-icons" style="color: red;">delete</span></a>
+                                        <a class="ms-3" href="{{ url('/artista/' . $artista->id . '/edit') }}"><span class="material-icons text-secondary">edit</span></a>
                                     </th>
                                 </tr>
                             @endforeach
@@ -90,7 +100,6 @@
 
                     </table>
                     
-
                 </div>
 
             </div>

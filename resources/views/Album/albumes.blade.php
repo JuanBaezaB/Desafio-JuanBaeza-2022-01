@@ -76,7 +76,7 @@
                                 <tr>
                                     <th scope="col"> {{ $album['titulo'] }}</th>
                                     <th scope="col"> {{ $album['fecha_lanzamiento'] }}</th>
-                                    <th scope="col"> {{ $album['duracion'] }}</th>
+                                    <th scope="col"> {{  gmdate("m", $album['duracion'])  }} min y {{gmdate("s", $album['duracion']) }} seg</th>
                                     <th scope="col"> <img class="shadow" style="width:100px"
                                             src="data:image/jpeg;base64,{{ $album['imagen'] }}"></th>
                                     <th scope="col"> 
@@ -87,16 +87,21 @@
                                         @endforeach 
                                     </th>
                                     <th>
-                                        <form action="{{ url('/album/' . $album->id) }}" method="POST">
-                                            @csrf
-                                            {{ @method_field('DELETE') }}
-                                            <button type="submit" class="btn p-0"
-                                                onclick="return confirm('¿Desea borrarlo realmete?')"><span
-                                                    class="material-icons" style="color: red;">delete</span></button>
-                                        </form>
-
-                                        <a href="{{ url('/album/' . $album->id . '/edit') }}"><span
-                                                class="material-icons text-secondary">edit</span></a>
+                                        <div class="row">
+                                            <div class="col-6 text-end">
+                                                <form action="{{ url('/album/' . $album->id) }}" method="POST">
+                                                    @csrf
+                                                    {{ @method_field('DELETE') }}
+                                                    <button type="submit" class="btn p-0"
+                                                        onclick="return confirm('¿Desea borrarlo realmete?')"><span
+                                                            class="material-icons" style="color: red;">delete</span></button>
+                                                </form>
+                                            </div>
+                                            <div class="col-6 text-start">
+                                                <a href="{{ url('/album/' . $album->id . '/edit') }}"><span
+                                                        class="material-icons text-secondary">edit</span></a>
+                                            </div>
+                                        </div>
                                     </th>
                                 </tr>
                             @endforeach

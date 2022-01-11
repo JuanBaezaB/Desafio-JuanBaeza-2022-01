@@ -13,9 +13,15 @@ class artistaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     
     public function index(){
-        
         try{
             $artistas = ArtistaModel::all();
             return response()->view('Artista.artistas', compact('artistas'));

@@ -61,20 +61,11 @@
                     {{method_field('PATCH')}}
                     <div class="row">
                         
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 mb-3  col-md-6">
                             <label class="form-label fw-bolder">Título:</label>
                             <input type="text" class="form-control shadow-sm" name="titulo" maxlength="100" value="{{$cancion->titulo}}" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label class="form-label fw-bolder">Duración:</label>
-                            <input type="text" class="form-control shadow-sm" name="duracion" maxlength="100" value="{{$cancion->duracion}}" required>
-                            <input type="datetime">
-                        </div>
-                        <div class="mt-3 col-sm-12 mb-3 col-md-6">
-                            <label class="form-label fw-bolder">Letra:</label>
-                            <input type="text" class="form-control shadow-sm" name="lyrics" maxlength="100" value="{{$cancion->lyrics}}"required>
-                        </div>
-                        <div class="mt-3 col-sm-12 col-md-6">
 
                             <label class="form-label fw-bolder ">Álbum:</label>
                             <select  class="form-select form-control shadow-sm" name="album_id" required>
@@ -89,7 +80,11 @@
                             </select>
 
                         </div>
-                        
+                        <div class=" col-sm-12 mb-3 ">
+                            <label class="form-label fw-bolder">Letra:</label>
+                            <textarea name="lyrics" class="form-control shadow-sm" cols="30" rows="10" maxlength="12000" required>{{$cancion->lyrics}}</textarea>
+                        </div>
+
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-12">
@@ -105,7 +100,8 @@
                             </div>
                         </div>
                         
-                        <div class="mt-3 col-sm-12 col-md-6 ">
+                        
+                        <div class="mt-3 col-sm-12  ">
                             <label class="form-label fw-bolder ">Géneros:</label>
                             <div class="button-group ">
                                 <button type="button" class=" shadow-sm border btn btn-default dropdown-toggle" data-toggle="dropdown"><span class=""></span> Seleccione<span class="caret"></span></button>
@@ -138,7 +134,10 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="col-sm-12 col-md-6">
 
+                            <input type="hidden" class="form-control shadow-sm"  maxlength="100" value="0" required>
+                        </div>
                         <div class=" col-12 text-center mt-4">
                             <button class="btn btn-secondary shadow-sm" type="submit">Guardar</button>
                         </div>
