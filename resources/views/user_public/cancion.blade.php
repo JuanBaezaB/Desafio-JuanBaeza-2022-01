@@ -64,7 +64,7 @@
                                 {{ gmdate('s', $cancion['duracion']) }} s</p>
                             <p class="card-text"><small class="text-muted">Visitas: {{$cancion->visitas}}
                                 </small></p>
-                            <p class="card-text">{{ nl2br($cancion->lyrics)}}</p>
+                            <p class="card-text">{{ $cancion->lyrics}}</p>
                         </div>
                     </div>
                 </div>

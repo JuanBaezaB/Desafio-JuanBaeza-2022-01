@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="col-12 " style="padding-top: 300px">
                     <p class="ps-4">#MI2021ENSPOTIFY</p>
-                    <h1 class="ps-4">Descubre musica nueva todos los días</h1>
+                    <h1 class="ps-4 fw-bolder">Descubre musica nueva todos los días</h1>
                     
                 </div>
             </div>
