@@ -65,7 +65,7 @@
 </div>
     <div class="container pt-4">
         <div class="mt-4 pb-3">
-            <h4 class="fw-bolder">Últimos lanzamientos</h4>
+            <h4 class="fw-bolder">Agregadas recientemente</h4>
         </div>
         
         <div  class="owl-carousel  owl-theme">
