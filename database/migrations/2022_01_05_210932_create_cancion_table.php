@@ -17,7 +17,7 @@ class CreateCancionTable extends Migration
             $table->tinyIncrements('id');
             $table->string('titulo');
             $table->integer('duracion');
-            $table->string('lyrics');
+            $table->string('lyrics',12000);
             $table->integer('visitas');
             $table->integer('like');
             ///$table->binary('audio');

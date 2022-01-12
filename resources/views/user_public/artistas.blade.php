@@ -1,10 +1,5 @@
 @extends('app')
 
-@section('css')
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-@endsection
 
 @section('nav')
     <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
@@ -24,13 +19,13 @@
             </ul>
             <ul class="navbar-nav gap-2 text-center mt-2 mb-2 me-3">
                 <li class="nav-item">
-                    <a class="nav-link text-white fw-bolder"  href="{{url('/artistas_public')}}">ARTISTAS</a>
+                    <a class="nav-link fw-bolder"  style="color:rgb(0, 216, 86)" href="{{url('/artistas_public')}}">ARTISTAS</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link text-white  fw-bolder" href="{{url('/albumes_public')}}">ÁLBUMES</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white fw-bolder" href="{{url('/canciones_public')}}">CANCIONES</a>
+                    <a class="nav-link text-white fw-bolder" href="{{url('/canciones_public')}}">CANCIÓN</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white  fw-bolder" href="{{url('/generos_public')}}">GÉNEROS MUSICALES</a>
@@ -46,64 +41,41 @@
     </nav>
 @endsection
 
+
 @section('body')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 div1">
-
-
-            <div class="row">
-                <div class="col-12 " style="padding-top: 300px">
-                    <p class="ps-4">#MI2021ENSPOTIFY</p>
-                    <h1 class="ps-4">Descubre musica nueva todos los días</h1>
-                    
+    <div class="container mt-4">
+        <div class="row">
+            @foreach ($artistas as $artista)
+                <div class="col-md-3 mt-2 col-sm-6">
+                    <div class="card me-1 ms-1" >
+                        <img class="card-img-top" src="data:image/jpeg;base64,{{ $artista['imagen'] }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$artista->nombre}}</h5>
+                            <p class="card-text"  style="display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            text-overflow: ellipsis;">
+                            {{$artista->descripcion}}</p>
+                            
+                            <a class="btn btn-primary" href="{{ url('/artistas_public/' . $artista->id ) }}">Ver mas</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
             
         </div>
     </div>
-</div>
-    <div class="container pt-4">
-        <div class="mt-4 pb-3">
-            <h4 class="fw-bolder">Últimos lanzamientos</h4>
-        </div>
-        
-        <div  class="owl-carousel  owl-theme">
-            @foreach ($canciones as $cancion)
-                <div class="card">
-                    @foreach ($albumes as $album)
-                        @if ($album->id == $cancion->album_id)
-                            <img class="card-img-top shadow-lg" src="data:image/jpeg;base64,{{ $album['imagen'] }}">
-                        @endif
-                    @endforeach
-                    
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{$cancion->titulo}}</h5>
-                        <p class="card-text"></p>
-                        <audio  controls src="data:audio/mp3;base64,{{ $cancion->audio }}"> </audio>
-                        <a class="btn btn-primary" href="{{ url('/canciones_public/' . $cancion->id ) }}">Ver mas</a>
-                    </div>
-                </div>
-                
-            @endforeach
 
-
-
-        </div>
-    </div>
-
-   <div class="container-fluid">
-       
-   </div>
-   <style>
-       .card:hover {
+<style>
+    .card:hover {
         box-shadow: 0 0 11px rgba(33, 33, 33, .2);
     }
-   </style>
-
+</style>
 @endsection
+
 @section('footer')
-<div class="container-fuid pt-4">
+<div class="container-fuid mt-4">
 
     <footer class="bg-dark text-center text-white">
     <!-- Grid container -->
@@ -155,40 +127,8 @@
     </div>
     <!-- Copyright -->
   </footer>
-    
+  <style>
+
+</style>
   </div>
-@endsection
-
-@section('js')
-    <script>
-        $(document).ready(function(){
-            $(".owl-carousel").owlCarousel({
-               
-                loop:true,
-               
-                margin:10,
-                responsiveClass:true,
-                responsive:{
-                    0:{
-                        items:1,
-                        nav:false
-                    },
-                    600:{
-                        items:3,
-                        nav:false
-                    },
-                    1000:{
-                        items:4,
-                        nav:false,
-                        loop:false
-                    }
-                }
-
-            });
-        });
-
-        
-    </script>
-    
-
 @endsection

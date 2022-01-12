@@ -3,7 +3,7 @@
 @section('nav')
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <a class="navbar-brand ps-2" href="index.php">
+        <a class="navbar-brand ps-2" href="{{ url('/artista') }}">
             <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="" width="50" height="50" class="d-inline-block align-top" >
         </a>
 
@@ -31,8 +31,16 @@
             </ul> 
             <ul class="navbar-nav text-center mt-2 mb-2 me-3">
                 <li class="nav-item">
-                    
-                    <a class="btn btn-dark " href="#" role="button"><span class="material-icons align-middle">logout</span> SALIR</a>
+                    <div class="" >
+                        <a class="btn btn-dark" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();"><span class="material-icons align-middle">logout</span> SALIR
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
                 </li>
             </ul>
         </div>

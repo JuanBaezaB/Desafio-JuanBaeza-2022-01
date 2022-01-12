@@ -3,7 +3,7 @@
 @section('nav')
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <a class="navbar-brand ps-2" href="index.php">
+        <a class="navbar-brand ps-2" href="{{ url('/artista') }}">
             <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="" width="50" height="50"
                 class="d-inline-block align-top">
         </a>
@@ -32,9 +32,22 @@
             </ul>
             <ul class="navbar-nav text-center mt-2 mb-2 me-3">
                 <li class="nav-item">
-
-                    <a class="btn btn-dark " href="#" role="button"><span class="material-icons align-middle">logout</span>
-                        SALIR</a>
+                    <ul class="navbar-nav text-center mt-2 mb-2 me-3">
+                        <li class="nav-item">
+                            <div class="" >
+                                <a class="btn btn-dark" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();"><span class="material-icons align-middle">logout</span> SALIR
+                                </a>
+        
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                            
+                            
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -70,6 +83,7 @@
                                 <th scope="col">Letra</th>
                                 <th scope="col">Audio</th>
                                 <th style="width: 80px;" scope="col">Álbum</th>
+                                <th style="width: 80px;" scope="col">Visitas</th>
                                 <th style="width: 80px;" scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -79,7 +93,7 @@
                                     <th scope="col"> {{ $cancion['titulo'] }}</th>
                                     <th scope="col"> {{ gmdate("i", $cancion['duracion'])}} min y {{gmdate("s", $cancion['duracion']) }} seg</th>
                                     <th scope="col"> {{ $cancion['lyrics'] }}</th>
-                                    <th scope="col"> <audio id="audio1" controls
+                                    <th scope="col"> <audio style="width: 250px" controls
                                             src="data:audio/mp3;base64,{{ $cancion['audio'] }}"></audio></th>
                                     <th scope="col">
                                         @foreach ($albumes as $album)
@@ -88,6 +102,7 @@
                                             @endif
                                         @endforeach
                                     </th>
+                                    <th scope="col" class="text-center ">{{$cancion->visitas}}</th>
                                     <th class="text-center text-align" >
                                         <div class="row">
                                             <div class="col-6 text-end">

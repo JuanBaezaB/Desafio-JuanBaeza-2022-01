@@ -83,12 +83,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <style>
-            .card:hover {
-                box-shadow: 0 0 11px rgba(33, 33, 33, .2);
-            }
-
-        </style>
+        
     </div>
 </body>
 

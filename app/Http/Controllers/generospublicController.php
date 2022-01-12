@@ -9,9 +9,8 @@ use App\Models\GeneroCancionModel;
 use App\Models\CancionArtistaModel;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class landingpageController extends Controller
+class generospublicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,19 +18,11 @@ class landingpageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        try{
-            /*
-            $canciones = CancionModel::all();
-            
-            $generos = GeneroModel::all();
-            $artistas = ArtistaModel::all();*/
-            $canciones = DB::select('SELECT * FROM cancion ORDER BY created_at DESC LIMIT 7');
-
-            $albumes = AlbumModel::all();
-            return response()->view('landingpage', compact('albumes','canciones'));
-        }catch(\Throwable $th){
-            return $th;
-        }
+        $canciones = CancionModel::all();
+        $albumes = AlbumModel::all();
+        $generos = GeneroModel::all();
+        $artistas = ArtistaModel::all();
+        return response()->view('user_public.generos', compact('canciones','albumes','generos','artistas'));
     }
 
     /**

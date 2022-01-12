@@ -16,7 +16,7 @@ class CreateArtistaTable extends Migration
         Schema::create('artista', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->string('descripcion',1000);
             $table->longtext('imagen');
             $table->timestamps();
         });

@@ -11,7 +11,7 @@ use App\Models\CancionArtistaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class landingpageController extends Controller
+class artistaspublicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,19 +19,12 @@ class landingpageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        try{
-            /*
-            $canciones = CancionModel::all();
-            
-            $generos = GeneroModel::all();
-            $artistas = ArtistaModel::all();*/
-            $canciones = DB::select('SELECT * FROM cancion ORDER BY created_at DESC LIMIT 7');
+        $canciones = CancionModel::all();
+        $albumes = AlbumModel::all();
+        $generos = GeneroModel::all();
+        $artistas = ArtistaModel::all();
+        return response()->view('user_public.artistas', compact('canciones','albumes','generos','artistas'));
 
-            $albumes = AlbumModel::all();
-            return response()->view('landingpage', compact('albumes','canciones'));
-        }catch(\Throwable $th){
-            return $th;
-        }
     }
 
     /**
@@ -61,9 +54,22 @@ class landingpageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+        $canciones = DB::select('SELECT cancion.id FROM cancion, album WHERE cancion.album_id=album.id AND album.artista_id='.$id.'');
+        $array = array();
+        $i=0;
+        foreach ($canciones as $cancion) {
+            $array[$i]=$cancion->id;
+            $i++;
+        }
+        //return response() -> json($array);
+        $artista = ArtistaModel::findOrFail($id);
+        $canciones = CancionModel::all();
+        $albumes = AlbumModel::all();
+        $generos = GeneroModel::all();
+        $artistas = ArtistaModel::all();
+        return response()->view('user_public.artista', compact('canciones','albumes','generos','artistas','artista','array'));
+        
     }
 
     /**

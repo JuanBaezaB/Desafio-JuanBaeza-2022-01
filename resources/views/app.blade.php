@@ -3,7 +3,8 @@
 
 <head>
     <!-- navbar -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- /navbar -->
@@ -43,13 +44,22 @@
 
 <body>
     <style>
+        .div1{
+            background-image: url("https://images3.alphacoders.com/264/264659.jpg");
+            height: 500px;
+            padding-top: ;
+            background-position: center top;
+        }
         a:hover {
-        color:rgb(194, 190, 190) !important;
+        color:rgb(190, 194, 191) !important;
     }
+
+    
     </style>
     @yield('nav')
     
     @yield('body')
+    @yield('footer')
     @yield('js')
 </body>
 

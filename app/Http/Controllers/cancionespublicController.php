@@ -11,7 +11,7 @@ use App\Models\CancionArtistaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class landingpageController extends Controller
+class cancionespublicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,19 +19,11 @@ class landingpageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        try{
-            /*
-            $canciones = CancionModel::all();
-            
-            $generos = GeneroModel::all();
-            $artistas = ArtistaModel::all();*/
-            $canciones = DB::select('SELECT * FROM cancion ORDER BY created_at DESC LIMIT 7');
-
-            $albumes = AlbumModel::all();
-            return response()->view('landingpage', compact('albumes','canciones'));
-        }catch(\Throwable $th){
-            return $th;
-        }
+        $canciones = CancionModel::all();
+        $albumes = AlbumModel::all();
+        $generos = GeneroModel::all();
+        $artistas = ArtistaModel::all();
+        return response()->view('user_public.canciones', compact('canciones','albumes','generos','artistas'));
     }
 
     /**
@@ -61,9 +53,18 @@ class landingpageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+        $visitas = DB::select('SELECT visitas FROM cancion WHERE id = '.$id.'');
+        $visit = $visitas[0]->visitas;
+        $visit++;
+        DB::update('UPDATE cancion SET visitas = '.$visit.' WHERE id = '.$id.'');
+
+        $cancion = CancionModel::findOrFail($id);
+        $canciones = CancionModel::all();
+        $albumes = AlbumModel::all();
+        $generos = GeneroModel::all();
+        $artistas = ArtistaModel::all();
+        return response()->view('user_public.cancion', compact('canciones','albumes','generos','artistas','cancion'));
     }
 
     /**

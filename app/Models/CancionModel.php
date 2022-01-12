@@ -19,4 +19,9 @@ class CancionModel extends Model{
         'like',
         'album_id'
     ];
+    protected $with=['album'];
+    public function album(){
+        return $this->hasOne(AlbumModel::class,'id');
+        
+    }
 }

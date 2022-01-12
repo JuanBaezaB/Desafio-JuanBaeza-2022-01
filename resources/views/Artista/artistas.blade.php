@@ -9,7 +9,7 @@
 @section('nav')
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <a class="navbar-brand ps-2" href="index.php">
+        <a class="navbar-brand ps-2" href="{{ url('/artista') }}">
             <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="" width="50" height="50" class="d-inline-block align-top" >
         </a>
 
